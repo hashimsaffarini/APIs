@@ -8,3 +8,8 @@ final class GetAllUsers extends MyState {
   final List<Users> users;
   GetAllUsers(this.users);
 }
+
+final class GetUserById extends MyState {
+  final Users user;
+  GetUserById(this.user);
+}

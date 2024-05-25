@@ -13,9 +13,9 @@ class MyCubit extends Cubit<MyState> {
     final users = await myRepo.getAllUsers();
     emit(GetAllUsers(users));
   }
-  //  void emitGetAllUsers() async {
-  //   myRepo.getAllUsers().then((users) {
-  //     emit(GetAllUsers(users));
-  //   });
-  // }
+
+  void emitGetUserById(int id) async {
+    final user = await myRepo.getUserById(id);
+    emit(GetUserById(user));
+  }
 }
