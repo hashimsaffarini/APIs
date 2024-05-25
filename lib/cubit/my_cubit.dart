@@ -23,4 +23,9 @@ class MyCubit extends Cubit<MyState> {
     final createdUser = await myRepo.createUser(user);
     emit(CreateUser(createdUser));
   }
+
+  void emitDeleteUser(int id) async {
+    final response = await myRepo.deleteUser(id);
+    emit(DeleteUser(response));
+  }
 }

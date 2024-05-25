@@ -18,3 +18,8 @@ final class CreateUser extends MyState {
   final Users user;
   CreateUser(this.user);
 }
+
+final class DeleteUser extends MyState {
+  final dynamic response;
+  DeleteUser(this.response);
+}

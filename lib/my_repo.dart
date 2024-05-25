@@ -20,4 +20,12 @@ class MyRepo {
         'Bearer efd0cce3ae3d280057d2766522a27511d0f1515dc54a71083690ab82acbc715a');
     return createdUser;
   }
+
+  Future<dynamic> deleteUser(int id) async {
+    final response = await webService.deleteUser(
+      id,
+      'Bearer efd0cce3ae3d280057d2766522a27511d0f1515dc54a71083690ab82acbc715a',
+    );
+    return response;
+  }
 }
