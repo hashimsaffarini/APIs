@@ -30,19 +30,16 @@ environment:
 dependencies:
   build_runner: ^2.4.10
   cupertino_icons: ^1.0.6
-  #APIs calls
   dio: ^5.4.3+1
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.5
   freezed: ^2.5.2
-  #Dependency injection
   get_it: ^7.7.0
   json_annotation: ^4.9.0
   json_serializable: ^6.8.0
-  #Abstract classes for API calls and models generation
+  pretty_dio_logger: ^1.3.1
   retrofit: ^4.1.0
-  #Generator for API calls and models
   retrofit_generator: ^8.1.0
 
 dev_dependencies:
