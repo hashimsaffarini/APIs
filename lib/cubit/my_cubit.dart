@@ -18,4 +18,9 @@ class MyCubit extends Cubit<MyState> {
     final user = await myRepo.getUserById(id);
     emit(GetUserById(user));
   }
+
+  void emitCreateUser(Users user) async {
+    final createdUser = await myRepo.createUser(user);
+    emit(CreateUser(createdUser));
+  }
 }

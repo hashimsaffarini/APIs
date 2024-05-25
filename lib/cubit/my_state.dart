@@ -13,3 +13,8 @@ final class GetUserById extends MyState {
   final Users user;
   GetUserById(this.user);
 }
+
+final class CreateUser extends MyState {
+  final Users user;
+  CreateUser(this.user);
+}

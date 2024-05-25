@@ -1,4 +1,5 @@
 import 'package:api_project/cubit/my_cubit.dart';
+import 'package:api_project/users.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +15,13 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     //BlocProvider.of<MyCubit>(context).emitGetAllUsers();
-    BlocProvider.of<MyCubit>(context).emitGetUserById(6927869);
+    // BlocProvider.of<MyCubit>(context).emitGetUserById(6927869);
+    BlocProvider.of<MyCubit>(context).emitCreateUser(Users(
+      name: 'Omar Saffarini',
+      email: 'omar@gmail.com',
+      gender: 'Male',
+      status: 'Active',
+    ));
   }
 
   @override
@@ -60,9 +67,34 @@ class _HomeScreenState extends State<HomeScreen> {
             //     }
             //   },
             // ),
-            BlocBuilder<MyCubit, MyState>(
+            // BlocBuilder<MyCubit, MyState>(
+            //   builder: (context, state) {
+            //     if (state is GetUserById) {
+            //       final users = state.user;
+            //       return Padding(
+            //         padding: const EdgeInsets.symmetric(
+            //           vertical: 10,
+            //           horizontal: 10,
+            //         ),
+            //         child: Container(
+            //           height: 50,
+            //           color: Colors.amber,
+            //           child: Center(
+            //             child: Text(
+            //               users.name ?? 'No name found',
+            //               style: const TextStyle(fontSize: 20),
+            //             ),
+            //           ),
+            //         ),
+            //       );
+            //     } else {
+            //       return const Center(child: CircularProgressIndicator());
+            //     }
+            //   },
+            // ),
+              BlocBuilder<MyCubit, MyState>(
               builder: (context, state) {
-                if (state is GetUserById) {
+                if (state is CreateUser) {
                   final users = state.user;
                   return Padding(
                     padding: const EdgeInsets.symmetric(
@@ -74,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.amber,
                       child: Center(
                         child: Text(
-                          users.name ?? 'No name found',
+                          users.email ?? 'No name found',
                           style: const TextStyle(fontSize: 20),
                         ),
                       ),
