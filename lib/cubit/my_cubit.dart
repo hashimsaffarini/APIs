@@ -1,31 +1,58 @@
+import 'package:api_project/cubit/my_state.dart';
 import 'package:api_project/my_repo.dart';
 import 'package:api_project/users.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'my_state.dart';
-
-class MyCubit extends Cubit<MyState> {
-  MyCubit(this.myRepo) : super(MyInitial());
+class MyCubit extends Cubit<MyState<Users>> {
+  MyCubit(this.myRepo) : super(const MyState.initial());
 
   final MyRepo myRepo;
 
-  void emitGetAllUsers() async {
-    final users = await myRepo.getAllUsers();
-    emit(GetAllUsers(users));
-  }
+  // Future<void> emitGetAllUsers() async {
+  //   final users = await myRepo.getAllUsers();
+  //   users.when(
+  //     success: (users) {
+  //       emit(SuccessList(users));
+  //     },
+  //     failure: (error) {
+  //       emit(Error(error));
+  //     },
+  //   );
+  // }
 
-  void emitGetUserById(int id) async {
+  Future<void> emitGetUserById(int id) async {
     final user = await myRepo.getUserById(id);
-    emit(GetUserById(user));
+    user.when(
+      success: (user) {
+        emit(Success(user));
+      },
+      failure: (error) {
+        emit(Error(error));
+      },
+    );
   }
 
-  void emitCreateUser(Users user) async {
+  Future<void> emitCreateUser(Users user) async {
     final createdUser = await myRepo.createUser(user);
-    emit(CreateUser(createdUser));
+    createdUser.when(
+      success: (user) {
+        emit(Success(user));
+      },
+      failure: (error) {
+        emit(Error(error));
+      },
+    );
   }
 
-  void emitDeleteUser(int id) async {
+  Future<void> emitDeleteUser(int id) async {
     final response = await myRepo.deleteUser(id);
-    emit(DeleteUser(response));
+    response.when(
+      success: (response) {
+        emit(Success(response));
+      },
+      failure: (error) {
+        emit(Error(error));
+      },
+    );
   }
 }

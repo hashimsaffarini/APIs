@@ -1,25 +1,12 @@
-part of 'my_cubit.dart';
+import 'package:api_project/api_error_handler.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'my_state.freezed.dart';
 
-sealed class MyState {}
-
-final class MyInitial extends MyState {}
-
-final class GetAllUsers extends MyState {
-  final List<Users> users;
-  GetAllUsers(this.users);
-}
-
-final class GetUserById extends MyState {
-  final Users user;
-  GetUserById(this.user);
-}
-
-final class CreateUser extends MyState {
-  final Users user;
-  CreateUser(this.user);
-}
-
-final class DeleteUser extends MyState {
-  final dynamic response;
-  DeleteUser(this.response);
+@freezed
+abstract class MyState<T> with _$MyState<T> {
+  const factory MyState.initial() = Initial;
+  const factory MyState.loading() = Loading<T>;
+  const factory MyState.success(T data) = Success<T>;
+  const factory MyState.error(ErrorHandler error) = Error<T>;
+  // const factory MyState.successList(List<T> data) = SuccessList<T>;
 }
